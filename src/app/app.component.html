@@ -8,16 +8,19 @@
           <div class="form-group">
             <label for="username">Username</label>
             <!-- name will be register to javascript representation of the form -->
+            <!-- ngNativeValidate is to enable HTML5 validation because angular disable it -->
             <input type="text" id="username" class="form-control"
               ngModel
+              ngNativeValidate
               name="username"
-            >
+              required>
           </div>
           <button class="btn btn-default" type="button">Suggest an Username</button>
           <div class="form-group">
             <label for="email">Mail</label>
-            <input type="email" id="email" class="form-control" ngModel name="email" >
+            <input type="email" id="email" class="form-control" ngModel name="email" required email>
           </div>
+          <p>Please enter a valid value</p>
         </div>
         <div class="form-group">
           <label for="secret">Secret Questions</label>
@@ -27,7 +30,8 @@
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit"
+        [disabled] = "!f.valid">Submit</button>
       </form>
     </div>
   </div>
