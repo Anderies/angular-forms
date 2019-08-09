@@ -16,6 +16,22 @@ export class AppComponent {
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+    // this is not best options because it's override all form field to default one 
+    // and user need to input again other field again
+    // this.signupForm.setValue({
+    //   userData:{
+    //     username: suggestedName,
+    //     email: ''
+    //   },
+    //   secret: 'pet',
+    //   questionAnswer: 'hola',
+    //   gender: 'female'
+    // });
+    this.signupForm.form.patchValue({
+      userData:{
+        username: suggestedName
+      }
+    });
   }
 
   // onSubmit(form: NgForm){
