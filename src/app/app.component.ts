@@ -13,6 +13,15 @@ export class AppComponent {
   defaultQuestion = "pet";
   answer = '';
   genders = ['male','female'];
+  user = {
+    username: '',
+    email: '',
+    secretQuestion: '',
+    answer: '',
+    gender: ''
+  }
+  // tracking submitted
+  submitted = false;
 
   suggestUserName() {
     const suggestedName = 'Superuser';
@@ -27,6 +36,7 @@ export class AppComponent {
     //   questionAnswer: 'hola',
     //   gender: 'female'
     // });
+    // this is patch spesific value
     this.signupForm.form.patchValue({
       userData:{
         username: suggestedName
@@ -39,11 +49,16 @@ export class AppComponent {
   // }
 
   onSubmit(){
-    console.log(this.signupForm.control.value.userData.username);
-    console.log(this.signupForm.control.value.userData.email);
-    console.log(this.signupForm.control.value.secret);
-    console.log(this.signupForm.control.value.questionAnswer);
-    console.log(this.signupForm.control.value.gender);
+    this.submitted = true;
+    this.user.username = this.signupForm.value.username;
+    this.user.email = this.signupForm.value.userData.email;
+    this.user.secretQuestion = this.signupForm.value.secret;
+    this.user.answer = this.signupForm.value.questionAnswer;
+    this.user.gender = this.signupForm.value.gender;
+    // this is will reset form 
+    // !Important you can pass the same object as in set Value() to reset which will then reset the 
+    // form to spesific values
+    this.signupForm.reset();
     console.log(this.signupForm);
     // console.log(this.signupForm);
   }
